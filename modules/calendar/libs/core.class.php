@@ -70,7 +70,7 @@ class core_Calendar
      * Constructor
      *
      */
-    function core_Calendar()
+    function __construct()
     {
         global $arrConf;
 

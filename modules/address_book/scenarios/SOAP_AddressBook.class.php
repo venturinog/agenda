@@ -38,9 +38,9 @@ class SOAP_AddressBook extends core_AddressBook
      *
      * @param  object   $objSOAPServer     SOAP Server Object
      */
-    public function SOAP_AddressBook($objSOAPServer)
+    public function __construct($objSOAPServer)
     {
-        parent::core_AddressBook();
+        parent::__construct();
         $this->objSOAPServer = $objSOAPServer;
     }
 

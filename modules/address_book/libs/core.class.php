@@ -76,7 +76,7 @@ class core_AddressBook
      * Constructor
      *
      */
-    public function core_AddressBook()
+    public function __construct()
     {
         $this->_id_user = NULL;
         $this->_pACL = NULL;

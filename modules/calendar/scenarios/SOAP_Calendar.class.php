@@ -38,9 +38,9 @@ class SOAP_Calendar extends core_Calendar
      *
      * @param  object   $objSOAPServer     SOAP Server Object
      */
-    public function SOAP_Calendar($objSOAPServer)
+    public function __construct($objSOAPServer)
     {
-        parent::core_Calendar();
+        parent::__construct();
         $this->objSOAPServer = $objSOAPServer;
     }
 
