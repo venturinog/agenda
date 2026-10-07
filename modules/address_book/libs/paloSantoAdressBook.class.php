@@ -416,7 +416,7 @@ a array with the field "total" containing the total of records.
         return $result;
     }
 
-    function isEditablePublicContact($id, $id_user, $directory, $isAdminGroup=false, $dns)
+    function isEditablePublicContact($id, $id_user, $directory, $isAdminGroup, $dns)
     {
         //Solo se pueden editar los contactos externos por medio
         //de sus creadores o dueños.
