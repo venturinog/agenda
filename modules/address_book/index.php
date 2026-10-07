@@ -467,7 +467,7 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
             if(file_exists($picture))
                 $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img alt='image' style='border-radius: 50%;' border='0' src='index.php?menu=$module_name&type=".$directory_type."&action=getImage&idPhoto=$adress_book[id]&thumbnail=yes&rawmode=yes'/></a>";
             else{
-                $defaultPicture = "/index.php?menu=address_book&type=${directory_type}&action=getImage&idPhoto=${adress_book['id']}&thumbnail=yes&rawmode=yes";
+                $defaultPicture = "/index.php?menu=address_book&type={$directory_type}&action=getImage&idPhoto={$adress_book['id']}&thumbnail=yes&rawmode=yes";
                 $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img width='48' style='border-radius: 50%;' border='0' alt='image' src='$defaultPicture'/></a>";
             }
 
