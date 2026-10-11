@@ -3,7 +3,7 @@
 Summary: Issabel Agenda Module
 Name: issabel-agenda
 Version: 6.0.0
-Release: 2
+Release: 3
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -102,3 +102,6 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Sun Oct 11 2026 Issabel Foundation <info@issabel.org> - 6.0.0-3
+- Calendar: remove the hardcoded text colours from the event dialog so it
+  follows the theme in dark mode.

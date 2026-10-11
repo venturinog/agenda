@@ -69,7 +69,7 @@
                 <b id="notification_email_label">{$notification_email}: <span  class="required">*</span></b>
             </div>
             <div class="ui-widget">
-                <textarea id="tags" cols="48px" rows="2" style="margin:6px; color: #333333; width: 365px; height: 36px; "></textarea>
+                <textarea id="tags" cols="48px" rows="2" style="margin:6px; color: var(--iss-text); width: 365px; height: 36px; "></textarea>
             </div>
         </td>
     </tr>
@@ -79,8 +79,8 @@
 	    <thead>
 	       <tr>
 	           <td>&nbsp;</td>
-	           <td class="letra12" align="center" style="color:#666666; font-weight:bold;">{$LBL_CONTACT_NAME}</td>
-               <td class="letra12" align="center" style="color:#666666; font-weight:bold;">{$LBL_CONTACT_EMAIL}</td>
+	           <td class="letra12" align="center" style="color: var(--iss-text-muted); font-weight:bold;">{$LBL_CONTACT_NAME}</td>
+               <td class="letra12" align="center" style="color: var(--iss-text-muted); font-weight:bold;">{$LBL_CONTACT_EMAIL}</td>
                <td>&nbsp;</td>
 	       </tr>
 	    </thead>
