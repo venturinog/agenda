@@ -206,6 +206,28 @@ function handleHTML_mainReport($smarty, $module_name, $local_templates_dir)
             'MSG_ERROR_INVALID_EMAIL'=> _tr('email_no_valid'),
             'MSG_ERROR_NO_EMAILS'   =>  _tr('error_notification_emails'),
         )),
+        'ARRLANG_CALENDAR'          =>  $json->encode(array(
+            'days' => array(
+                _tr('Sunday'), _tr('Monday'), _tr('Tuesday'), _tr('Wednesday'),
+                _tr('Thursday'), _tr('Friday'), _tr('Saturday'),
+            ),
+            'daysShort' => array(
+                _tr('Su'), _tr('Mo'), _tr('Tu'), _tr('We'), _tr('Th'), _tr('Fr'), _tr('Sa'),
+            ),
+            'daysMin' => array(
+                _tr('Su'), _tr('Mo'), _tr('Tu'), _tr('We'), _tr('Th'), _tr('Fr'), _tr('Sa'),
+            ),
+            'months' => array(
+                _tr('January'), _tr('February'), _tr('March'), _tr('April'),
+                _tr('May'), _tr('June'), _tr('July'), _tr('August'),
+                _tr('September'), _tr('October'), _tr('November'), _tr('December'),
+            ),
+            'monthsShort' => array(
+                _tr('January'), _tr('February'), _tr('March'), _tr('April'),
+                _tr('May'), _tr('June'), _tr('July'), _tr('August'),
+                _tr('September'), _tr('October'), _tr('November'), _tr('December'),
+            ),
+        )),
     ));
     $smarty->assign('EVENT_DIALOG',
         $oForm->fetchForm("$local_templates_dir/calendar_event_dialog.tpl", _tr('Calendar'), array()));

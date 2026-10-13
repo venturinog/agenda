@@ -56,28 +56,51 @@ if (!Date.prototype.toISOString ) {
 }
 
 $(document).ready(function() {
-	/* El DatePicker debe de inicializarse ANTES que el FullCalendar porque la
-     * inicialización del FullCalendar toma todo el ancho restante disponible
-     * al momento de dibujarse, y si el DatePicker se inicializa después, la
-     * columna del último día de la semana se aplasta. */
+    var calendarDatepicker = null;
+    var calendarReady = false;
+    var syncingCalendarView = false;
+    var calendarPickerElement = document.getElementById('calendar_datepick');
 
-    // Definición del calendario para navegar
-    $("#calendar_datepick").datepicker({
-        firstDay: 1,
-        changeYear: true,
-        changeMonth: true,
-        showButtonPanel: false, //today buttom
-        onChangeMonthYear: function(year, month, inst) {
-            $('#calendar_main').fullCalendar('gotoDate', year, month - 1);
-        },
-        onSelect: function(dateText, inst){
-            //// dateText mm/dd/yyyy
-            //// año , mes[0,1,2,3...11], day
-            var date = dateText.split("/",3);
-            $('#calendar_main').fullCalendar('gotoDate', date[2], date[0] - 1, date[1]);
-            $('#calendar_main').fullCalendar('changeView', 'agendaDay');
-        }
-    });
+    if (calendarPickerElement && typeof AirDatepicker !== 'undefined') {
+        var calendarYear = parseInt($('input[name="server_year"]').val(), 10);
+        var calendarMonth = parseInt($('input[name="server_month"]').val(), 10);
+        var calendarToday = new Date();
+        var calendarStartDate = new Date(calendarYear, calendarMonth, 1);
+
+        calendarDatepicker = new AirDatepicker(calendarPickerElement, {
+            inline: true,
+            fixedHeight: true,
+            firstDay: 1,
+            startDate: calendarStartDate,
+            selectedDates: [calendarToday],
+            locale: arrLang_calendar,
+            onSelect: function(selection) {
+                var selectedDate = selection.date;
+                if (Array.isArray(selectedDate)) selectedDate = selectedDate[0];
+                if (!selectedDate || !calendarReady) return;
+
+                syncingCalendarView = true;
+                $('#calendar_main').fullCalendar('gotoDate', selectedDate);
+                $('#calendar_main').fullCalendar('changeView', 'agendaDay');
+                syncingCalendarView = false;
+            },
+            onChangeViewDate: function(viewDate) {
+                if (!calendarReady || syncingCalendarView) return;
+
+                var currentDate = $('#calendar_main').fullCalendar('getDate');
+                var lastDay = new Date(viewDate.year, viewDate.month + 1, 0).getDate();
+                var targetDate = new Date(
+                    viewDate.year,
+                    viewDate.month,
+                    Math.min(currentDate.getDate(), lastDay)
+                );
+
+                syncingCalendarView = true;
+                $('#calendar_main').fullCalendar('gotoDate', targetDate);
+                syncingCalendarView = false;
+            }
+        });
+    }
 
     // Botón de nuevo evento
     $("#calendar_newevent").click(function() {
@@ -120,7 +143,7 @@ $(document).ready(function() {
         timeFormat: 'H:mm{ - H:mm}',
         events: '/rest.php/' + getCurrentIssabelModule() + '/CalendarEvent?format=fullcalendar',
         header: {
-            left:   'prev,next today create',
+            left:   'prev,next today',
             center: 'title',
             right:  'month,agendaWeek,agendaDay'
         },
@@ -169,11 +192,20 @@ $(document).ready(function() {
 
             // Al devolver FALSE se impide que se abra en navegador el url REST
             return false;
+        },
+        viewDisplay: function() {
+            if (!calendarDatepicker || syncingCalendarView) return;
+
+            var currentDate = $('#calendar_main').fullCalendar('getDate');
+            syncingCalendarView = true;
+            calendarDatepicker.selectDate(currentDate, { silent: true });
+            calendarDatepicker.setViewDate(currentDate);
+            syncingCalendarView = false;
         }
     });
 
-    // Color del título del calendario
-    $('.fc-header-title').css('color', '#E35332');
+    calendarReady = typeof $('#calendar_main').fullCalendar != 'undefined' &&
+        $('#calendar_main').hasClass('fc');
 
     // Preparar diálogo y widgets
     $('#calendar_eventdialog').dialog({

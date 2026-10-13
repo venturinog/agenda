@@ -3,7 +3,7 @@
 Summary: Issabel Agenda Module
 Name: issabel-agenda
 Version: 6.0.0
-Release: 4
+Release: 5
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -102,6 +102,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Tue Oct 13 2026 Issabel Foundation <info@issabel.org> - 6.0.0-5
+- Replace the floating calendar picker with a localized inline Air Datepicker.
+- Restyle the calendar layout and controls for Modern light and dark themes.
+
 * Sun Oct 11 2026 Issabel Foundation <info@issabel.org> - 6.0.0-3
 - Calendar: remove the hardcoded text colours from the event dialog so it
   follows the theme in dark mode.
