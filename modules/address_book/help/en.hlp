@@ -25,7 +25,7 @@
 <tr><td>Call</td><td>Click here to call to the extension. Remember that the currently user must be associate an extension number to his account in order to make calls from here. You can do this in the module "System => Users"</td></tr>
 <tr><td>Transfer</td><td>Transfer the call to other extension</td></tr>
 <tr>
-	<td>Type Contact</td>
+	<td>Contact Type</td>
 	<td>
 		<p><img src="../modules/{$node_id}/images/public.png" border="0" /> Public contact: Created by other user (non editable)</p>
 		<p><img src="../modules/{$node_id}/images/public_edit.png" border="0" /> Public contact: Editable by the user who created it.</p>
