@@ -3,7 +3,7 @@
 Summary: Issabel Agenda Module
 Name: issabel-agenda
 Version: 6.0.0
-Release: 6
+Release: 7
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
@@ -102,6 +102,10 @@ fi
 /usr/share/issabel/module_installer/*
 
 %changelog
+* Tue Oct 13 2026 Issabel Foundation <info@issabel.org> - 6.0.0-7
+- Address book: bump release so the Tabler icon changes supersede the
+  previously built 6.0.0-6 package.
+
 * Tue Oct 13 2026 Issabel Foundation <info@issabel.org> - 6.0.0-6
 - Address book: replace the Call and Type Contact column images with Tabler icons.
 - Address book: rename the "Type Contact" column header to "Contact Type".
